@@ -11,7 +11,8 @@ public class Eff
 
     public static void main( String[] args )
     {
-       System.out.println(syracuse());
+       System.out.println(premierOrNotPremier());
+
     }
 
     // somme de deux valeurs
@@ -53,13 +54,25 @@ public class Eff
     //pair : divise par 2
     //impair ; on le multiplie par 3 et on ajoute 1
     //enfin on affiche combien de fois nous sommes passé dans la boucle
+    //comptabiliser le nombre de number >=10 a la suite et le stocker dans counter
     public static int syracuse(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez un nombre");
         int number = sc.nextInt();
         int counter=0;
-        int memory=0;
-        while(!(number==1)){
+        int serie=0;
+
+        while(number!=1){
+
+            if (number>=10){
+                counter++;
+            }else {
+                if (counter > serie) {
+                    serie = counter;
+                    counter = 0;
+                }
+
+            }
 
             if(number%2==0){
                 number/=2;
@@ -67,21 +80,13 @@ public class Eff
                 number = number*3+1;
             }
 
-            if(number>=10){//15 - 13 * 18
 
-                if(counter>=memory){
-                    counter++; //1+1 * 0
-                }else{
-                    counter = memory; //2
-                }
-
-            }else{ // 7
-                memory= counter; //2
-                counter = 0;
-            }
         }
-        return counter;
+
+        return serie;
     }
+
+
 
 
         //José va bientot passer son bac, il effectue en ce moment une anti-seche en Java qui lui permet de lui donner
@@ -102,7 +107,23 @@ public class Eff
 // entre 12 inclus et 14 exclus : mention assez bien
 // entre 14 inclus et 16 exclus : mention bien
 // au dela de 16 inclus : très bien
-    public static void mentionBac(int note){
+    public static void mentionBac(){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Entrez votre note:");
+    float saisie = sc.nextFloat();
+    if(saisie<8) {
+        System.out.println("Vous êtres recalé");
+    } else if (saisie>=8 && saisie<10) {
+        System.out.println("Vous êtes en rattrapage");
+    } else if (saisie>=10 && saisie<12) {
+        System.out.println("Vous êtres admis");
+    } else if (saisie>=12 && saisie<14) {
+        System.out.println("Félicitation! Vous avez la mention assez-bien");
+    } else if (saisie>=14 && saisie<16) {
+        System.out.println("Félicitation! Vous avez la mention bien");
+    }else{
+        System.out.println("Félicitation! Vous avez la mention trés bien");
+    }
 
     }
 
@@ -112,21 +133,43 @@ public class Eff
 // il culpabilise car il a trop mangé et souhaite connaitre son IMC.
         // demander les le poid ainsi que la taille à l'utilisateur et affichez son IMC
         // L'imc est le poid (en kg) divisé ar la taille (en m) au carré.
-    public static void imc(){
-
+    public static float imc(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez votre poids en kg:");
+        float poids = sc.nextFloat();
+        System.out.println("Entrez votre taille en mètre:");
+        float taille = sc.nextFloat();
+        float imc = poids/(float)Math.pow(taille,2);
+        return imc;
     }
 
 
     // l'utilisateur doit saisir un nombre entier: on lui affiche s'il est pair ou impair
     // pair si quand il est divisé par deux, le reste est de 0
-    public static void pairOrImpair(){
+    public static String pairOrImpair(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez un nombre entier");
+        int number = sc.nextInt();
+        if(number % 2 == 0){
+            return "Pair";
+        }else{
+            return "impair";
+
+        }
 
     }
 
     // on demande à l'utilisateur un nombre entier, on lui affiche s'il est premier ou non
     // regle : un nombre est premier seulement s'il est divisible par 1 et lui-même , 1 exclu
-    public static void premierOrNotPremier(){
-
+    public static String premierOrNotPremier(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez un nombre entier");
+        int number = sc.nextInt();
+        if(number==1 || number%1 !=0 || number%number != 0){
+            return "Ce nombre n'est pas premier";
+        }else{
+           return  "Ce nombre est premier";
+        }
     }
 
 
