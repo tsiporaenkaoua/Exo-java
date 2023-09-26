@@ -8,10 +8,8 @@ import java.util.stream.Collectors;
 
 public class Eff
 {
-
-    public static void main( String[] args )
-    {
-       System.out.println(premierOrNotPremier());
+    public static void main(String[] args) {
+       System.out.println(keyControlHealth(1921071123456L));
 
     }
 
@@ -22,7 +20,8 @@ public class Eff
 
 
         // l'utilisateur , saisie deux valeurs et on affiche la somme
-        // nous pouvons varier cela avec une soustraction ou encore multiplication
+        // nous pouvons varier cela avec une soustraction ou encore multiplication    public static void main( String[] args )
+        //    {
     public static void userWriteSum(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez votre premier chiffre");
@@ -165,19 +164,29 @@ public class Eff
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez un nombre entier");
         int number = sc.nextInt();
-        if(number==1 || number%1 !=0 || number%number != 0){
+        if(number<=1 ){
             return "Ce nombre n'est pas premier";
-        }else{
-           return  "Ce nombre est premier";
         }
+        for(int i=2; i<number; i++){
+                if(number%i==0){
+                    return "Ce nombre n'est pas premier";
+        }
+
+        }
+            return  "Ce nombre est premier";
+
     }
 
 
 
     // division, attention au 0
     // Pour rappel, une division par 0 est interdite
-    public static void divisionTwoValues(int numerator, int denumerator){
-
+    public static String divisionTwoValues(int numerator, int denumerator){
+        if(denumerator!=0){
+            return "Le resultat est " + (float) numerator/denumerator;
+        }else {
+            return "On ne peut pas faire une division avec un dénominateur équivalent à 0";
+        }
     }
 
 
@@ -187,8 +196,9 @@ public class Eff
         // Ainsi, il vous demande de lui donner la clef de controle de sa carte de sécurité sociale
 // la clef de controle = 97 - (numero de sécurité sociale modulo 97) (le numero de securité sociale est de 13 chiffres)
         // exemple : pour le code sécurité sociale 1921071123456 la clef est de 15.
-    public static void keyControlHealth(int securiteSocialNum){
-
+    public static long keyControlHealth(long securiteSocialNum){
+        long key =  97- (securiteSocialNum % 97);
+        return key;
     }
 
 }
